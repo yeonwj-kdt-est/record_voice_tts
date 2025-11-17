@@ -1,5 +1,5 @@
 import streamlit as st
-from AudioRecorder import AudioRecorder
+from audiorecorder import audiorecorder
 from tempfile import NamedTemporaryFile
 import librosa
 import base64
