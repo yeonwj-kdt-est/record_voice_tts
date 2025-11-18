@@ -95,3 +95,15 @@ with st.sidebar:
         st.button("Rewind", on_click=rewind, use_container_width=True, type='primary')
     with btn_col2:
         st.button("Clear", on_click=clear_history, use_container_width=True)
+
+st.subheader("마이크 녹음 테스트")
+
+audio = audiorecorder("녹음 시작", "녹음 정지")
+
+if len(audio) > 0:
+    st.success("녹음 완료")
+
+    with NamedTemporaryFile(suffix=".mp3", delete=False) as tmp_file:
+        tmp_path = tmp_file.name
+        audio.export(tmp_path, format="mp3")
+        st.write(f"저장된 파일: {tmp_path}")
