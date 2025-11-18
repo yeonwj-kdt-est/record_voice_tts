@@ -107,3 +107,14 @@ if len(audio) > 0:
         tmp_path = tmp_file.name
         audio.export(tmp_path, format="mp3")
         st.write(f"저장된 파일: {tmp_path}")
+
+# Display chat messages from history on app rerun
+for i, msg in enumerate(st.session_state.messages):
+    with st.chat_message(msg["role"]):
+        content = msg.get('content', '')
+        if voice_embed:
+            embed = msg.get('tts_embed', '')
+            if i == (len(st.session_state.messages) - 1):
+                embed = embed.replace('<audio controls>', '<audio controls autoplay>')
+            content = '\n\n'.join([content, embed])
+        st.markdown(content, unsafe_allow_html=True)
